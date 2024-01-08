@@ -38,6 +38,13 @@ class ApiFeatures {
         return this;
     }
 
-    
+
+    pagination(productsperpage){
+        const currentpage= Number(this.queryStr.page) || 1;     //if there is no page default page is 1
+        const skip = productsperpage*(currentpage-1)            // Nunber of products skipped to show products in current page
+        this.query=this.query.limit(productsperpage).skip(skip);
+
+        return this;
+    }
 }
 module.exports=ApiFeatures;
