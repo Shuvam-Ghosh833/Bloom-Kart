@@ -22,3 +22,25 @@ cookie-parser:  The middleware will parse the Cookie header on the request and e
                 as the property req.signedCookies. These properties are name value pairs
                 of the cookie name to cookie value.
 
+
+ADMINS:
+
+{
+    "name": "Shuvam",
+    "email": "shuvamghosh1234@gmail.com",
+    "password": "passwordshuvam"
+}
+
+USERS: 
+
+{
+    "name": "Kamal",
+    "email": "kamalghosh842@gmail.com",
+    "password": "passwords1234kamal"
+}
+
+{
+    "name": "Xeno D",
+    "email": "xenocide833@gmail.com",
+    "password": "passwords1234xeno"
+}
