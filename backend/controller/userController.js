@@ -58,3 +58,46 @@ exports.logoutUser = catchAsyncErrors(async(req,res,nex)=>{
 
     res.status(200).json({success:true, message: "logged out"});
 })
+
+// Forget Paswword
+exports.forfotPassword = catchAsyncErrors(async(req,res,nex)=>{
+
+  const user= await User.findOne({email: req.body.email})
+
+  if(!user) {
+    return next(new ErrorHandler("User not found",404));
+  }
+
+  // Get ResetPassword Token
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save({ validateBeforeSave: false });
+
+  const resetPasswordUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/password/reset/${resetToken}`;
+
+  const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Ecommerce Password Recovery`,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(new ErrorHander(error.message, 500));
+  }
+
+ 
+})
