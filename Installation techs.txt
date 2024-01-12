@@ -42,5 +42,5 @@ USERS:
 {
     "name": "Xeno D",
     "email": "xenocide833@gmail.com",  
-    "password": "passwords1234xeno"      (reset Password:  "passwords1234xenocide")
+    "password": "passwords1234xeno"      (New Reset Password:  "passwords1234xenocide")
 }
