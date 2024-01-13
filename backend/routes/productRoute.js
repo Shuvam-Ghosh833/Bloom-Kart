@@ -6,12 +6,14 @@ const { isAuthenticatedUser ,authorizeRoles} = require("../middleware/auth");
 const router=express.Router();
 
 router.route("/products").get(getAllProduct);
-router.route("/product/new").post(isAuthenticatedUser ,authorizeRoles("admin"),createProduct);
+router.route("/admin/product/new").post(isAuthenticatedUser ,authorizeRoles("admin"),createProduct);
 router
-    .route("/product/:id")
+    .route("/admin/product/:id")
     .put(isAuthenticatedUser ,authorizeRoles("admin"),updateProduct)
-    .delete(isAuthenticatedUser ,authorizeRoles("admin"),deleteProduct)
-    .get(getProductDetails);  //updating, Getting and deleting in the same route
+    .delete(isAuthenticatedUser ,authorizeRoles("admin"),deleteProduct);//updating, Getting and deleting in the same route
+
+
+router.route("/product/:id").get(getProductDetails);  
 
 
 
