@@ -183,7 +183,7 @@ exports.updateProfile=catchAsyncErrors(async(req,res,next) => {
     useFindAndModify: false,
   });
 
-  res.status(200).json({success: true});
+  res.status(200).json({success: true,message: "User Profile updated Successfully"});
 
 });
 
@@ -207,3 +207,38 @@ exports.getSingleUser = catchAsyncErrors(async(req, res, next) => {
     
     res.status(200).json({success:true,user})
   });
+
+
+  //Update User Role (ADMIN)
+exports.updateRole=catchAsyncErrors(async(req,res,next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({success: true,message: "User Role Updated Successfully"});
+
+});
+
+
+//Delete User Profile (ADMIN)
+exports.deleteUser=catchAsyncErrors(async(req,res,next) => {
+  const user=await User.findById(req.params.id);  
+
+  // Remove cloudinary later for avatar
+
+  if(!user)
+  {
+      return next(new ErrorHandler(`User does not exist with ID: ${req.params.id}`,404));
+  }
+  await user.deleteOne();
+  res.status(201).json({success:true, message: "User deleted Successfully"});
+  
+});
