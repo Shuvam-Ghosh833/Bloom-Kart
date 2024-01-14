@@ -66,3 +66,45 @@ exports.deleteProduct= catchAsyncErrors(async(req, res, next) => {
     res.status(201).json({success:true, message: "Product deleted Successfully"});
 
 });
+
+
+// Create new Review or Update the review
+exports.createProductReview= catchAsyncErrors(async(req, res, next) => {
+    const {rating , comment ,productID} = req.body;
+    const review={
+        user:req.user._id,
+        name:req.user.name,
+        rating:Number(rating),
+        comment
+    }
+    const product=await Product.findById(productID);
+
+    /*So, rev => rev.user.toString() is essentially a function that, given an element rev 
+    (which is assumed to be an object with a user property), returns the string 
+    representation of the user property*/
+    const isReviewed= product.reviews.find( (rev)=>rev.user.toString() === req.user._id.toString());
+
+    if(isReviewed){
+        product.reviews.forEach(rev=>{
+            if((rev)=>rev.user.toString() === req.user._id.toString())
+            {
+                rev.rating=rating;
+                rev.comment=comment;
+            }
+        });
+    } 
+    else{
+        product.reviews.push(review);
+        product.numOfReviews=product.reviews.length;
+    }
+    
+    // Average rating of a product
+    let sum = 0;
+    product.reviews.forEach((rev) => {sum += rev.rating;});
+    product.ratings = sum / product.reviews.length; 
+
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({success: true, message: "Reviews Updated Successfully"});
+
+});
