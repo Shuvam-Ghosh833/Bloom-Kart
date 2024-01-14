@@ -1,5 +1,5 @@
 const express=require("express");
-const { getAllProduct , createProduct, updateProduct, deleteProduct, getProductDetails, createProductReview} = require("../controller/productController");
+const { getAllProduct , createProduct, updateProduct, deleteProduct, getProductDetails, createProductReview, getProductReviews} = require("../controller/productController");
 const { isAuthenticatedUser ,authorizeRoles} = require("../middleware/auth");
 
 
@@ -16,6 +16,8 @@ router
 router.route("/product/:id").get(getProductDetails);  
 
 router.route("/review").put(isAuthenticatedUser , createProductReview);
+router.route("/review").get(getProductReviews);
+
 
 
 
