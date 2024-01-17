@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import WebFont from "webfontloader";
-import Header from "./component/layout/Header.js"
+import Header from "./component/layout/Header/Header.js"
+import Footer from "./component/layout/Footer/Footer.js"
+
 import { BrowserRouter as Router} from "react-router-dom";
+
 
 function App() {
   useEffect(() => {
@@ -18,6 +21,7 @@ function App() {
   return (
     <Router>
       <Header/>
+      <Footer/>
     </Router>
     
   );
