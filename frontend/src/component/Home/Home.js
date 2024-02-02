@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
 import "./Home.css";
-import Product from "./Product.js"
+import Product from "./Product.js";
+import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useAlert } from "react-alert";
@@ -19,7 +20,7 @@ return (
     <Fragment>
       
     
-          
+          <MetaData title="Ecommerce"></MetaData>
 
           <div className="banner">
             <p>Welcome to Ecommerce</p>

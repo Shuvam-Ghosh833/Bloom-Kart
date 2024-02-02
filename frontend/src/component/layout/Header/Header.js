@@ -1,6 +1,8 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
+import { Addon } from "./Addon";
+import { CgProfile } from "react-icons/cg";
 
 const options = {
   burgerColorHover: "#eb4034",
@@ -27,16 +29,24 @@ const options = {
   link1Margin: "1vmax",
   profileIconUrl: "/login",
   profileIconColor: "rgba(35, 35, 35,0.8)",
-  searchIconColor: "rgba(35, 35, 35,0.8)",
+  searchIconSize:"2vmax",
+  searchIconColor:"black",
+
   cartIconColor: "rgba(35, 35, 35,0.8)",
   profileIconColorHover: "#eb4034",
   searchIconColorHover: "#eb4034",
   cartIconColorHover: "#eb4034",
   cartIconMargin: "1vmax",
+  
+ 
 };
 
 const Header = () => {
-  return <ReactNavbar {...options} />;
+  return (<>
+  <ReactNavbar {...options} />
+  <Addon></Addon>
+  </>
+  )
 };
 
 export default Header;
