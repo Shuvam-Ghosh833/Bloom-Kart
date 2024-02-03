@@ -85,4 +85,6 @@ react-router-dom:   React Router enables "client side routing".Client side routi
                     immediately render some new UI and make data requests with fetch to 
                     update the page with new information.
 
-overlay-navbar:                   
+overlay-navbar:       
+
+react-material-ui-carousel

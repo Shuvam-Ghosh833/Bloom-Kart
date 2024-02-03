@@ -44,7 +44,7 @@ const options = {
 const Header = () => {
   return (<>
   <ReactNavbar {...options} />
-  <Addon></Addon>
+  {/* <Addon></Addon> */}
   </>
   )
 };
