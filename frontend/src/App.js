@@ -6,6 +6,7 @@ import Footer from "./component/layout/Footer/Footer.js"
 import Home from "./component/Home/Home.js"
 
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import Loader from "./component/layout/Loader/Loader.js";
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
       <Header/>
       <Routes>
       <Route path="/" element={<Home />} />
+      {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
+
+
       
     </Routes>
       <Footer/>

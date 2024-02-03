@@ -6,6 +6,7 @@ import MetaData from "../layout/MetaData.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../actions/productActions.js";
 import { useAlert } from "react-alert";
+import Loader from "../layout/Loader/Loader.js";
 
 
 
@@ -26,34 +27,39 @@ const Home = () => {
   }, [dispatch]);
   
 return (
-    <Fragment>
+   <Fragment>
+    {loading ? (<Loader/>) : 
+    ( <Fragment>
       
     
-          <MetaData title="Ecommerce"></MetaData>
+      <MetaData title="Ecommerce"></MetaData>
 
-          <div className="banner">
-            <p>Welcome to Ecommerce</p>
-            <h1>FIND AMAZING PRODUCTS BELOW</h1>
+      <div className="banner">
+        <p>Welcome to Ecommerce</p>
+        <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
-            <a href="#container">
-              <button>
-                Scroll <CgMouse />
-              </button>
-            </a>
-          </div>
+        <a href="#container">
+          <button>
+            Scroll <CgMouse />
+          </button>
+        </a>
+      </div>
 
-          <h2 className="homeHeading">Featured Products</h2>
+      <h2 className="homeHeading">Featured Products</h2>
 
-         <div className="container" id="container">
-          
-          
-          {products &&
-              products.map((product) => (
-                <Product product={product} />
-              ))}
-          </div>
-        
-    </Fragment>
+     <div className="container" id="container">
+      
+      
+      {products &&
+          products.map((product) => (
+            <Product product={product} />
+          ))}
+      </div>
+    
+</Fragment>)
+    
+    }
+   </Fragment>
   );
 };
 
