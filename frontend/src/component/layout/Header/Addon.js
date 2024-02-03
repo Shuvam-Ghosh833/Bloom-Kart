@@ -3,7 +3,7 @@ import "./Addon.css"
 export const Addon = () => {
   return (
     
-      <div class="search_bar">
+      <div className="search_bar">
         <input type="text" name="search" />
         
 </div>
