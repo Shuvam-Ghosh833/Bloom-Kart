@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
     "@mui/styles": "^5.15.7",
