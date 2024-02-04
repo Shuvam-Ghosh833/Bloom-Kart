@@ -3,13 +3,16 @@ import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css"
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetails} from "../../actions/productActions";
+import { clearErrors, getProductDetails} from "../../actions/productActions";
 import { useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader/Loader.js";
 import MetaData from "../layout/MetaData.js";
 import ReviewCard from "./ReviewCard.js"
+
+
+
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -29,7 +32,10 @@ const ProductDetails = () => {
       }
      
     useEffect(() => {
-        
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+          }
         dispatch(getProductDetails(id));
       }, [dispatch, id, error, alert]);
     
