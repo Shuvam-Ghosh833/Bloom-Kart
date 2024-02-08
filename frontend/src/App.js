@@ -8,7 +8,7 @@ import Home from "./component/Home/Home.js"
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import Loader from "./component/layout/Loader/Loader.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
-
+import Products from "./component/Product/Products.js"
 
 function App() {
   useEffect(() => {
@@ -28,6 +28,8 @@ function App() {
       <Route path="/" element={<Home />} />
       {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/products" element={<Products />} />
+
       
 
       
