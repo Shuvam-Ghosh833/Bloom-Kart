@@ -29,6 +29,8 @@ function App() {
       {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/products/:keyword" element={<Products />} />
+
 
       
 

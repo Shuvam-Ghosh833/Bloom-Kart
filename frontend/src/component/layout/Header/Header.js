@@ -3,6 +3,9 @@ import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
 import { Addon } from "./Addon";
 import { CgProfile } from "react-icons/cg";
+import Navbar from "./Navbar";
+
+
 
 const options = {
   burgerColorHover: "#eb4034",
@@ -43,8 +46,10 @@ const options = {
 
 const Header = () => {
   return (<>
-  <ReactNavbar {...options} />
+  {/* <ReactNavbar {...options} /> */}
   {/* <Addon></Addon> */}
+  <Navbar></Navbar>
+ 
   </>
   )
 };
