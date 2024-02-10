@@ -37,7 +37,7 @@ const Products = ({ match }) => {
     loading,
     error,
     productsCount,
-    resultPerPage,
+    productsperpage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
 
@@ -50,7 +50,7 @@ const Products = ({ match }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-  let count = filteredProductsCount;
+  let count = 15;
 
   useEffect(() => {
     if (error) {
@@ -115,11 +115,11 @@ const Products = ({ match }) => {
               />
             </fieldset>
           </div>
-          {resultPerPage < count && (
+          {productsperpage < count && (
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
+                itemsCountPerPage={productsperpage}
                 totalItemsCount={productsCount}
                 onChange={setCurrentPageNo}
                 nextPageText="Next"
