@@ -12,13 +12,13 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
 const categories = [
-  "Laptop",
-  "Footwear",
-  "Bottom",
-  "Tops",
-  "Attire",
-  "Camera",
   "SmartPhones",
+  "Footwear",
+  "Shirt",
+  "Trousers",
+  "Electronics",
+  "Accessories",
+  
 ];
 
 const Products = ({ match }) => {
@@ -50,7 +50,7 @@ const Products = ({ match }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-  let count = 15;
+  let count = filteredProductsCount;
 
   useEffect(() => {
     if (error) {
