@@ -51,7 +51,11 @@ USERS:
     "password": "passwords1234john"
 }
 
-
+{
+    "name": "Testing",
+    "email": "testingemail@gmail.com",
+    "password": "passwords1234test"
+}
 
 FRONTEND
 
