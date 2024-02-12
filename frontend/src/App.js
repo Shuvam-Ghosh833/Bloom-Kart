@@ -9,6 +9,7 @@ import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import Loader from "./component/layout/Loader/Loader.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js"
+import LoginSignUp from "./component/User/LoginSignUp.js";
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,8 @@ function App() {
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/products" element={<Products />} />
       <Route path="/products/:keyword" element={<Products />} />
+      <Route path="/login" element={<LoginSignUp/>} />
+
 
 
       

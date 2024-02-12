@@ -6,7 +6,35 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+.login{
+ margin: auto 15px;
+}
+.login>a{
+ background-color: #497be7;
+ color: white;
+ padding: 10px 20px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ cursor: pointer;
+ border-Radius: 8px;
+ box-Shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: background-color 0.3s; /* Add transition for background color change */
 
+}
+.login>a:hover{
+  background-color:  white;
+  border-width: 1px;
+ 
+  border-color: #497be7;
+  color: #497be7;
+}
+.sidebar{
+  top: 2px;
+  display: flex;
+}
 ::selection{
   color: #fff;
   background: #664AFF;
@@ -88,6 +116,10 @@
   right: -50px;
   
   transform: translateY(-50%) rotate(360deg);
+}
+.login.active{
+  display: none;
+  
 }
 .search-box .search-data{
   text-align: center;

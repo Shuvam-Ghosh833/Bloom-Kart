@@ -2,7 +2,7 @@ import React, { useState } from 'react';
  import './SearchBar.css'; // Import your CSS file
 import { CiSearch } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
-
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -13,6 +13,9 @@ const AnimatedSearchBox = (history) => {
   const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
 
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.user
+    );
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
@@ -40,9 +43,20 @@ const AnimatedSearchBox = (history) => {
   };
 
   const [searchData, setSearchData] = useState('');
+ 
 
+  const buttonHoverStyle = {
+    backgroundColor: 'black', /* Lighter green on hover */
+  };
   return (
+    <div className='sidebar'>
+    <div className={`login ${isActive ? 'active' : ''}`}>
+    <a href={`${isAuthenticated? '' : '/login'}`} >
+      Login
+    </a>
+    </div>
     <div className={`search-box ${isActive ? 'active' : ''}`}>
+      
       <input
         type="text"
         placeholder="Type to search.."
@@ -59,7 +73,9 @@ const AnimatedSearchBox = (history) => {
       </div>
       <div className={`search-data ${isActive ? 'active' : ''}`}  />
     </div>
+    </div>
   );
+
 };
 
 export default AnimatedSearchBox;
