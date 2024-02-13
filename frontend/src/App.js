@@ -11,6 +11,8 @@ import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js"
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import Profile from "./component/User/Profile.js";
+import UpdateProfile from "./component/User/UpdateProfile.js";
+
 
 import store from './store'
 import { loadUser } from "./actions/userActions.js";
@@ -35,15 +37,25 @@ function App() {
       <Header/>
       {isAuthenticated && <UserOptions user={user}/>}
       <Routes>
-      <Route path="/" element={<Home />} />
-      {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
-      <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/products/:keyword" element={<Products />} />
-      <Route path="/account" element={<Profile/>} />
-      
-      {/* <Route path="/account" element={<ProtectedRoute element={<Profile />}/>}/> */}
-      <Route path="/login" element={<LoginSignUp/>} />
+      <Route path="/account" element={
+        <ProtectedRoute>
+        <Profile/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/me/update" element={
+        <ProtectedRoute>
+       <UpdateProfile/>
+        </ProtectedRoute>
+     }/>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:keyword" element={<Products />} />
+        {/* <Route path="/account" element={<Profile/>} />
+        <Route path="/me/update" element={<UpdateProfile/>}/> */}
+        {/* <Route path="/account" element={<ProtectedRoute element={<Profile />}/>}/> */}
+        <Route path="/login" element={<LoginSignUp/>} />
 
 
 
