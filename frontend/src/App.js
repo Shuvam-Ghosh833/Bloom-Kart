@@ -13,6 +13,8 @@ import LoginSignUp from "./component/User/LoginSignUp.js";
 import Profile from "./component/User/Profile.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+
 
 
 
@@ -54,6 +56,7 @@ function App() {
        <UpdatePassword/>
         </ProtectedRoute>
      }/>
+
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />
@@ -63,6 +66,8 @@ function App() {
         <Route path="/me/update" element={<UpdateProfile/>}/> */}
         {/* <Route path="/account" element={<ProtectedRoute element={<Profile />}/>}/> */}
         <Route path="/login" element={<LoginSignUp/>} />
+        <Route path="/password/forgot" element={ <ForgotPassword/>}/>
+
 
 
 
