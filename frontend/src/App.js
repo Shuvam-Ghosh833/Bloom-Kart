@@ -15,6 +15,7 @@ import Profile from "./component/User/Profile.js";
 import store from './store'
 import { loadUser } from "./actions/userActions.js";
  import UserOptions from "./component/layout/Header/UserOptions.js"
+import ProtectedRoute from "./component/Route/ProtectedRoute.js";
 
 function App() {
   const { isAuthenticated,user } = useSelector((state) => state.user);
@@ -40,7 +41,8 @@ function App() {
       <Route path="/products" element={<Products />} />
       <Route path="/products/:keyword" element={<Products />} />
       <Route path="/account" element={<Profile/>} />
-
+      
+      {/* <Route path="/account" element={<ProtectedRoute element={<Profile />}/>}/> */}
       <Route path="/login" element={<LoginSignUp/>} />
 
 
