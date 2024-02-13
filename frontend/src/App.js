@@ -12,6 +12,8 @@ import Products from "./component/Product/Products.js"
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import Profile from "./component/User/Profile.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
+import UpdatePassword from "./component/User/UpdatePassword.js";
+
 
 
 import store from './store'
@@ -45,6 +47,11 @@ function App() {
      <Route path="/me/update" element={
         <ProtectedRoute>
        <UpdateProfile/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/password/update" element={
+        <ProtectedRoute>
+       <UpdatePassword/>
         </ProtectedRoute>
      }/>
         <Route path="/" element={<Home />} />

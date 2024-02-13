@@ -54,7 +54,7 @@ USERS:
 {
     "name": "Testing",
     "email": "testingemail@gmail.com",
-    "password": "passwords1234test"
+    "password": "passwords1234test"       (New Reset Password:  "passwords1234testing12")
 }
 
 FRONTEND
