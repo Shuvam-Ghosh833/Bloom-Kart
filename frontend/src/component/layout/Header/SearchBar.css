@@ -40,6 +40,7 @@
   background: #664AFF;
 }
 .search-box{
+  margin-left: 10px;
   position: relative;
   height: 60px;
   width: 60px;
@@ -130,4 +131,31 @@
 }
 .search-box .search-data.active{
   display: none;
+}
+
+.cart{
+ 
+  background-Color:  #497be7; /* Blue */
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-Align: center;
+  text-Decoration: none;
+  display: inline-block;
+  font-Size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-Radius: 5px;
+  box-Shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+.cart:hover{
+  color: #497be7;
+  border: #497be7;
+  border-width: 1px;
+  background-Color: white;
+}
+.cart.active{
+  display: none;
+  
 }

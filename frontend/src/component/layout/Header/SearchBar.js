@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-
+import { FaShoppingCart } from "react-icons/fa";
 
 
 
@@ -50,9 +50,7 @@ const AnimatedSearchBox = (history) => {
     else setText('Login')
   }, [text,isAuthenticated,user])
 
-  const buttonHoverStyle = {
-    backgroundColor: 'black', /* Lighter green on hover */
-  };
+  
   return (
     <div className='sidebar'>
     <div className={`login ${isActive ? 'active' : ''}`}>
@@ -60,6 +58,11 @@ const AnimatedSearchBox = (history) => {
       {text}
     </a>
     </div>
+    <a href ="/cart" className={`cart ${isActive ? 'active' : ''}`}>
+      
+    <FaShoppingCart />
+
+    </a>
     <div className={`search-box ${isActive ? 'active' : ''}`}>
       
       <input
