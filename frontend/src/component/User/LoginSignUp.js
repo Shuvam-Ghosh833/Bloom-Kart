@@ -80,9 +80,9 @@ const LoginSignUp = () => {
         }
     
         if (isAuthenticated) {
-          navigate("/account");
+          navigate(redirect);
         }
-      }, [dispatch, error, alert, window.history, isAuthenticated, redirect]);
+      }, [dispatch, error, alert, navigate, isAuthenticated, redirect]);
     const switchTabs = (e, tab) => {
         if (tab === "login") {
           switcherTab.current.classList.add("shiftToNeutral");

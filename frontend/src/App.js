@@ -16,6 +16,8 @@ import UpdatePassword from "./component/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
+import Shipping from "./component/Cart/Shipping.js";
+
 
 
 
@@ -60,7 +62,11 @@ function App() {
        <UpdatePassword/>
         </ProtectedRoute>
      }/>
-
+     <Route path="/shipping" element={
+        <ProtectedRoute>
+       <Shipping/>
+        </ProtectedRoute>
+     }/>
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />
