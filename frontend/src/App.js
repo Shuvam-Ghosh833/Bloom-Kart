@@ -24,10 +24,12 @@ import Shipping from "./component/Cart/Shipping.js";
 
 
 
+
 import store from './store'
 import { loadUser } from "./actions/userActions.js";
  import UserOptions from "./component/layout/Header/UserOptions.js"
 import ProtectedRoute from "./component/Route/ProtectedRoute.js";
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
 
 function App() {
   const { isAuthenticated,user } = useSelector((state) => state.user);
@@ -65,6 +67,11 @@ function App() {
      <Route path="/shipping" element={
         <ProtectedRoute>
        <Shipping/>
+        </ProtectedRoute>
+     }/>
+      <Route path="/order/confirm" element={
+        <ProtectedRoute>
+       <ConfirmOrder/>
         </ProtectedRoute>
      }/>
         <Route path="/" element={<Home />} />
