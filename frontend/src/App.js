@@ -19,6 +19,8 @@ import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
 import Payment from "./component/Cart/Payment.js";
+import OrderSuccess from "./component/Cart/OrderSuccess.js";
+
 
 
 
@@ -93,6 +95,12 @@ function App() {
        </Elements>
        
      }/>)}
+
+      <Route path="/success" element={
+        <ProtectedRoute>
+       <OrderSuccess/>
+        </ProtectedRoute>
+     }/>
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />
