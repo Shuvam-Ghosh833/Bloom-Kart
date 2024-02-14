@@ -24,7 +24,7 @@ const Navbar = () => {
             <a href={`/${item}`}>{item}</a>
           </li>
         ))}
-        <div className='sidebar'>
+        <div className='sidebar_main'>
         <SearchBar></SearchBar>
         </div>
         

@@ -147,7 +147,7 @@
   .app__navbar-menu div ul li a:hover {
     color: var(--secondary-color);
   }
-  .sidebar{
+  .sidebar_main{
     position: absolute;
     right:5%;
   }

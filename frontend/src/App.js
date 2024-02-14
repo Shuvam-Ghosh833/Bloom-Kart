@@ -41,6 +41,12 @@ import { loadUser } from "./actions/userActions.js";
  import UserOptions from "./component/layout/Header/UserOptions.js"
 import ProtectedRoute from "./component/Route/ProtectedRoute.js";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import Dashboard from "./component/admin/Dashboard.js";
+import ProductList from "./component/admin/ProductList.js";
+import NewProduct from "./component/admin/NewProduct.js";
+import UpdateProduct from "./component/admin/UpdateProduct.js";
+
+
 
 function App() {
   const { isAuthenticated,user } = useSelector((state) => state.user);
@@ -63,6 +69,7 @@ function App() {
 
 
   return (
+    <div>
     <Router>
       <Header/>
       {isAuthenticated && <UserOptions user={user}/>}
@@ -117,7 +124,26 @@ function App() {
        <ConfirmOrder/>
         </ProtectedRoute>
      }/>
-     
+     <Route path="/admin/dashboard" element={
+        <ProtectedRoute isAdmin={true}>
+       <Dashboard/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/products" element={
+        <ProtectedRoute isAdmin={true}>
+       <ProductList/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/product" element={
+        <ProtectedRoute isAdmin={true}>
+       <NewProduct/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/product/:id" element={
+        <ProtectedRoute isAdmin={true}>
+       <UpdateProduct/>
+        </ProtectedRoute>
+     }/>
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />
@@ -140,9 +166,11 @@ function App() {
 
       
     </Routes>
-      <Footer/>
+      
     </Router>
     
+<Footer/>
+    </div>
   );
 }
 

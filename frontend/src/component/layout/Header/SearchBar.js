@@ -52,7 +52,7 @@ const AnimatedSearchBox = (history) => {
 
   
   return (
-    <div className='sidebar'>
+    <div className='sidebar_main'>
     <div className={`login ${isActive ? 'active' : ''}`}>
     <a href={`${isAuthenticated? '/account' : '/login'}`} >
       {text}
