@@ -58,7 +58,7 @@ const AnimatedSearchBox = (history) => {
       {text}
     </a>
     </div>
-    <a href ="/cart" className={`cart ${isActive ? 'active' : ''}`}>
+    <a href ={`${isAuthenticated? '/cart' : '/login'}`}  className={`cart ${isActive ? 'active' : ''}`}>
       
     <FaShoppingCart />
 
