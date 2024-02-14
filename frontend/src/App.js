@@ -6,7 +6,8 @@ import Header from "./component/layout/Header/Header.js"
 import Footer from "./component/layout/Footer/Footer.js"
 import Home from "./component/Home/Home.js"
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
+
 import Loader from "./component/layout/Loader/Loader.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js"
@@ -20,6 +21,10 @@ import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
 import Payment from "./component/Cart/Payment.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
+import MyOrders from "./component/Order/MyOrders.js";
+import OrderDetails from "./component/Order/OrderDetails.js";
+
+
 
 
 
@@ -52,8 +57,8 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    store.dispatch(loadUser());
-    getStripeApiKey();
+     store.dispatch(loadUser());
+      if(isAuthenticated) getStripeApiKey();
   }, []);
 
 
@@ -82,11 +87,7 @@ function App() {
        <Shipping/>
         </ProtectedRoute>
      }/>
-      <Route path="/order/confirm" element={
-        <ProtectedRoute>
-       <ConfirmOrder/>
-        </ProtectedRoute>
-     }/>
+     
      {stripeApiKey &&(<Route path="/process/payment" element={
       <Elements stripe={loadStripe(stripeApiKey)}> 
         <ProtectedRoute>
@@ -101,6 +102,22 @@ function App() {
        <OrderSuccess/>
         </ProtectedRoute>
      }/>
+       <Route path="/orders" element={
+        <ProtectedRoute>
+       <MyOrders/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/order/:id" element={
+        <ProtectedRoute>
+       <OrderDetails/>
+        </ProtectedRoute>
+     }/>
+      <Route path="/order/confirm" element={
+        <ProtectedRoute>
+       <ConfirmOrder/>
+        </ProtectedRoute>
+     }/>
+     
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />

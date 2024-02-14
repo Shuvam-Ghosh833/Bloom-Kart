@@ -65,6 +65,7 @@ const UserOptions = ({ user }) => {
 
   return (
     <Fragment>
+      <div className="useroptions">
       <Backdrop open={open} style={{ zIndex: "10" }} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
@@ -93,6 +94,7 @@ const UserOptions = ({ user }) => {
           />
         ))}
       </SpeedDial>
+      </div>
     </Fragment>
   );
 };
