@@ -1,11 +1,12 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "",
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
+    "build": "npm install  && npm install --prefix frontend --production=false && npm run build --prefix frontend",
+    
     "dev": "nodemon backend/server.js"
   },
   "author": "",
@@ -26,5 +27,8 @@
     "react-scripts": "^5.0.1",
     "stripe": "^14.16.0",
     "validator": "^13.11.0"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
 }
