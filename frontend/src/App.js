@@ -6,7 +6,7 @@ import Header from "./component/layout/Header/Header.js"
 import Footer from "./component/layout/Footer/Footer.js"
 import Home from "./component/Home/Home.js"
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes,Route,useLocation } from "react-router-dom";
 
 import Loader from "./component/layout/Loader/Loader.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
@@ -45,12 +45,31 @@ import Dashboard from "./component/admin/Dashboard.js";
 import ProductList from "./component/admin/ProductList.js";
 import NewProduct from "./component/admin/NewProduct.js";
 import UpdateProduct from "./component/admin/UpdateProduct.js";
+import OrderList from "./component/admin/OrderList.js";
+import ProcessOrder from "./component/admin/ProcessOrder.js";
+import UsersList from "./component/admin/UserList.js";
+import UpdateUser from "./component/admin/UpdateUser.js";
+import ProductReviews from "./component/admin/ProductReviews.js";
+import About from "./component/about/about.js";
+import Contact from "./component/contact/contact.js";
+import NotFound from "./component/layout/NotFound/NotFound.js";
 
 
 
 function App() {
   const { isAuthenticated,user } = useSelector((state) => state.user);
   const [stripeApiKey,setstripeApiKey] = useState("");
+
+  function ScrollToTop() {
+   const { pathname } = useLocation();
+ 
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [pathname]);
+ 
+   return null;
+ }
+
 
   async function getStripeApiKey(){
     const {data} =await axios.get("/api/v1/stripeapikey");
@@ -67,13 +86,27 @@ function App() {
       if(isAuthenticated) getStripeApiKey();
   }, []);
 
-
+// window.addEventListener("contextmenu",(e)=> e.preventDefault());
   return (
     <div>
+      
     <Router>
+    <ScrollToTop />
       <Header/>
+
       {isAuthenticated && <UserOptions user={user}/>}
+      
+
       <Routes>
+      { (<Route path="/process/payment" element={
+      <Elements stripe={loadStripe("pk_test_51OxtTsSEbFgQOvThy2AGkpVeQy2xQCwjUH61yzDQCzCcLexlR0S0EtaIjhdLYVQWbkaehfQJxMOaVue42N2WGSll00iUOMIaXr      ")}> 
+        <ProtectedRoute>
+      <Payment/>
+       </ProtectedRoute>
+       </Elements>
+       
+     }/>)}
+     
       <Route path="/account" element={
         <ProtectedRoute>
         <Profile/>
@@ -95,15 +128,7 @@ function App() {
         </ProtectedRoute>
      }/>
      
-     {stripeApiKey &&(<Route path="/process/payment" element={
-      <Elements stripe={loadStripe(stripeApiKey)}> 
-        <ProtectedRoute>
-      <Payment/>
-       </ProtectedRoute>
-       </Elements>
-       
-     }/>)}
-
+    
       <Route path="/success" element={
         <ProtectedRoute>
        <OrderSuccess/>
@@ -144,10 +169,42 @@ function App() {
        <UpdateProduct/>
         </ProtectedRoute>
      }/>
+      <Route path="/admin/orders" element={
+        <ProtectedRoute isAdmin={true}>
+       <OrderList/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/order/:id" element={
+        <ProtectedRoute isAdmin={true}>
+       <ProcessOrder/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/users" element={
+        <ProtectedRoute isAdmin={true}>
+       <UsersList/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/user/:id" element={
+        <ProtectedRoute isAdmin={true}>
+       <UpdateUser/>
+        </ProtectedRoute>
+     }/>
+     <Route path="/admin/reviews" element={
+        <ProtectedRoute isAdmin={true}>
+       <ProductReviews/>
+        </ProtectedRoute>
+     }/>
+      <Route element={
+         window.location.pathname==="/process/payment"? null:NotFound
+      }
+        />
         <Route path="/" element={<Home />} />
         {/* <Route path="/sad" element={<Loader />} />  to see the loading animation */}
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/About" element={<About/>} />
+        <Route path="/Contact" element={<Contact/>} />
+
         <Route path="/products/:keyword" element={<Products />} />
         {/* <Route path="/account" element={<Profile/>} />
         <Route path="/me/update" element={<UpdateProfile/>}/> */}

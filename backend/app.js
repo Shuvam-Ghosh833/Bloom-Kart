@@ -5,7 +5,7 @@ const bodyParser=require("body-parser");
 const fileUpload=require("express-fileupload")
 const errorMiddleware=require("./middleware/error")
 const dotenv=require("dotenv");
-
+const path=require("path")
 
 //Config
 dotenv.config({path: "backend/config/config.env"});
@@ -31,8 +31,11 @@ app.use("/api/v1",order);
 app.use("/api/v1",payment);
 
 
-
-
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  });
+  
 //MIDDLEWARE FOR ERRORS
 app.use(errorMiddleware);
 

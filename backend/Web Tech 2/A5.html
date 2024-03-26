@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+<style>
+form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  margin-bottom: 20px;  
+}
+
+input[type="submit"] {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+}
+.Submit{
+cursor:pointer;
+}
+</style>
+
+
+</head>
+<body>
+
+<form>
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username"><br>
+  
+  <label for="password">Password:</label> 
+  <input type="password" id="password" name="password"><br>
+
+  <input type="submit" value="Login" class="Submit">
+  <p id='error'></p>
+</form>
+
+<script>
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+
+// Get error label 
+const errorLabel = document.getElementById('error');
+
+// Validate username 
+function validateUsername() {
+  const username = usernameInput.value;
+  
+  // Check length
+  if (username.length > 10 || username.length === 0) {
+    errorLabel.textContent = 'Username must be 1-10 characters';
+    errorLabel.style.color = 'red';
+    return false;
+  }
+  
+  // Check allowed characters
+  const allowed = /^[a-zA-Z0-9_]*$/;
+  if(!allowed.test(username)) {
+    errorLabel.textContent = 'Username can only have letters, numbers and underscores';
+    errorLabel.style.color = 'red';
+    return false; 
+  }
+  
+  // Passed all checks
+  errorLabel.textContent = '';
+  return true;
+}
+// Validate password
+function validatePassword() {
+  const password = passwordInput.value;
+  
+  // Check length
+  if (password.length < 6 || password.length > 10) {
+    errorLabel.textContent = 'Password must be 6-10 characters';
+    errorLabel.style.color = 'red';
+    return false;
+  }
+
+  // Check for digit and uppercase letter
+  const hasDigit = /\d/.test(password);
+  const hasUppercase = /[A-Z]/.test(password);
+  if (!hasDigit || !hasUppercase) {
+    errorLabel.textContent = 'Password must have at least one digit and uppercase letter';
+    errorLabel.style.color = 'red';
+    return false;
+  }
+
+  // Passed all checks
+  errorLabel.textContent = ''; 
+  return true;
+}
+
+// Check validation on form submit
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  if (!validateUsername() || !validatePassword()) {
+    return; 
+  }
+  
+  // If valid, submit form
+  window.location = "success.html";
+});
+</script>
+</body>
+</html>

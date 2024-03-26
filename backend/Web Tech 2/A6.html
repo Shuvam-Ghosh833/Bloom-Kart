@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Home Page</title>
+  <style>
+    div{
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+   <script>
+      function logout(){
+      location.href="logout.html";
+      }
+      function reset(){
+        alert(timeID);
+      
+      clearInterval(timeID);
+      timeID=setInterval('logout()',5000);
+      }
+      function f() {
+        alert('abc');
+      }
+  </script>
+
+
+
+
+</head>
+
+<body onkeydown="reset()" onmousemove="reset()" onClick="reset()" onload="timeID=setInterval('logout()',5000)">
+<!--<body onmousemove="f()" onclick="f()">-->
+ <div><p>You will be logged out in 5 seconds if idle.</p></div> </body>
+</body>
+</html>

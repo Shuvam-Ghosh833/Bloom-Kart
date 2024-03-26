@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="app__navbar" >
       <div className="app__navbar-logo">
-       {/* <a href='#'><img src={images.Mylogo} alt="logo" /></a>  */}
+        <a href='#' className='logotitle'>bloom-KART</a>  
       </div>
      
       <ul className="app__navbar-links">

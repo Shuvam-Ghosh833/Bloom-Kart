@@ -41,7 +41,7 @@ return (
       <MetaData title="Ecommerce"></MetaData>
 
       <div className="banner">
-        <p>Welcome to Ecommerce</p>
+        <p>Welcome to BLOOM-KART</p>
         <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
         <a href="#container">

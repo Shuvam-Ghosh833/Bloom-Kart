@@ -43,7 +43,7 @@ exports.createProduct= catchAsyncErrors(async(req, res, next) => {
 //get all products
 exports.getAllProduct = catchAsyncErrors(async(req, res, next) => {
     /*console.log(req.query)*/
-    const productsperpage=5;
+    const productsperpage=8;
     const productCount=await Product.countDocuments();
     const apiFeature=new ApiFeatures(Product.find(),req.query).search().filter();
     let product=await apiFeature.query
@@ -83,7 +83,7 @@ exports.getProductDetails=catchAsyncErrors(async(req,res,next) => {
 exports.updateProduct=catchAsyncErrors(async(req,res,next) => {
     let product=await Product.findById(req.params.id);       //taking 'let' so we can change the product
     if (!product) {
-      return next(new ErrorHander("Product not found", 404));
+      return next(new ErrorHandler("Product not found", 404));
     }
   
     // Images Start Here
@@ -143,48 +143,88 @@ exports.deleteProduct= catchAsyncErrors(async(req, res, next) => {
     res.status(201).json({success:true, message: "Product deleted Successfully"});
 
 });
+// Create New Review or Update the review
+exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
+  const { rating, comment, productId } = req.body;
 
+  const review = {
+    user: req.user._id,
+    name: req.user.name,
+    rating: Number(rating),
+    comment,
+  };
 
-// Create new Review or Update the review
-exports.createProductReview= catchAsyncErrors(async(req, res, next) => {
-    const {rating , comment ,productID} = req.body;
-    const review={
-        user:req.user._id,
-        name:req.user.name,
-        rating:Number(rating),
-        comment
-    }
-    const product=await Product.findById(productID);
+  const product = await Product.findById(productId);
 
-    /*So, rev => rev.user.toString() is essentially a function that, given an element rev 
-    (which is assumed to be an object with a user property), returns the string 
-    representation of the user property*/
-    const isReviewed= product.reviews.find( (rev)=>rev.user.toString() === req.user._id.toString());
+  const isReviewed = product.reviews.find(
+    (rev) => rev.user.toString() === req.user._id.toString()
+  );
 
-    if(isReviewed){
-        product.reviews.forEach(rev=>{
-            if((rev)=>rev.user.toString() === req.user._id.toString())
-            {
-                rev.rating=rating;
-                rev.comment=comment;
-            }
-        });
-    } 
-    else{
-        product.reviews.push(review);
-        product.numOfReviews=product.reviews.length;
-    }
-    
-    // Average rating of a product
-    let sum = 0;
-    product.reviews.forEach((rev) => {sum += rev.rating;});
-    product.ratings = sum / product.reviews.length; 
+  if (isReviewed) {
+    product.reviews.forEach((rev) => {
+      if (rev.user.toString() === req.user._id.toString())
+        (rev.rating = rating), (rev.comment = comment);
+    });
+  } else {
+    product.reviews.push(review);
+    product.numOfReviews = product.reviews.length;
+  }
 
-    await product.save({ validateBeforeSave: false });
+  let avg = 0;
 
-    res.status(200).json({success: true, message: "Reviews Updated Successfully"});
+  product.reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
 
+  product.ratings = avg / product.reviews.length;
+
+  await product.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
 });
+
+// // Create new Review or Update the review
+// exports.createProductReview= catchAsyncErrors(async(req, res, next) => {
+//     const {rating , comment ,productID} = req.body;
+//     const review={
+//         user:req.user._id,
+//         name:req.user.name,
+//         rating:Number(rating),
+//         comment
+//     }
+//     const product=await Product.findById(productID);
+
+//     /*So, rev => rev.user.toString() is essentially a function that, given an element rev 
+//     (which is assumed to be an object with a user property), returns the string 
+//     representation of the user property*/
+//     const isReviewed= product.reviews.find( (rev)=>rev.user.toString() === req.user._id.toString());
+
+//     if(isReviewed){
+//         product.reviews.forEach(rev=>{
+//             if((rev)=>rev.user.toString() === req.user._id.toString())
+//             {
+//                 rev.rating=rating;
+//                 rev.comment=comment;
+//             }
+//         });
+//     } 
+//     else{
+//         product.reviews.push(review);
+//         product.numOfReviews=product.reviews.length;
+//     }
+    
+//     // Average rating of a product
+//     let sum = 0;
+//     product.reviews.forEach((rev) => {sum += rev.rating;});
+//     product.ratings = sum / product.reviews.length; 
+
+//     await product.save({ validateBeforeSave: false });
+
+//     res.status(200).json({success: true, message: "Reviews Updated Successfully"});
+
+// });
 
 
 // Get all Reviews of a Product

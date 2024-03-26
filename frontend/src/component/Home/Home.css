@@ -1,5 +1,5 @@
 .banner {
-    background-image: url("../../images/cover.jfif");
+    background-image: url("../../images/cover3.avif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,7 +37,7 @@
     background-color: rgba(255, 255, 255, 0);
     color: white;
   }
-  
+/*   
   .banner::after {
     content: "";
     width: 100vw;
@@ -46,9 +46,9 @@
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(100% 68%, 0 100%, 100% 100%);
+     clip-path: polygon(100% 68%, 0 100%, 100% 100%); 
     max-width: 100%;
-  }
+  } */
   
   .homeHeading {
     text-align: center;
@@ -69,6 +69,7 @@
     justify-content: center;
     max-width: 100%;
   }
+  
   
   .productCard {
     width: 14vmax;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="canvas" width="300" height="200"></canvas>
+
+
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+// Draw ellipse
+// Ellipse at 45 degrees
+
+/*
+ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle)
+context.transform(a, b, c, d, e, f)
+a	Scales the drawing horizontally	
+b	Skew the the drawing horizontally	
+c	Skew the the drawing vertically	
+d	Scales the drawing vertically	
+e	Moves the the drawing horizontally	
+f	Moves the the drawing vertically
+*/
+ctx.transform(1, 0, 0, 1, 150, 100);
+ctx.rotate(Math.PI / 4); 
+drawEllipse();
+ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+// Ellipse at 135 degrees
+ctx.transform(1, 0, 0, 1, 150, 100);
+ctx.rotate((Math.PI / 4)*3);
+drawEllipse(); 
+ctx.setTransform(1, 0, 0, 1, 0, 0); 
+
+// Ellipse  horizontal
+ctx.transform(1, 0, 0, 1, 150, 100);
+drawEllipse(); 
+ctx.setTransform(1, 0, 0, 1, 0, 0); 
+
+function drawEllipse() {
+  ctx.strokeStyle = "blue";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 100, 30, 0, 0, 2 * Math.PI);
+  ctx.stroke(); 
+}
+
+</script>
+
+</body>
+</html>

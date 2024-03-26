@@ -83,16 +83,16 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  // const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
-  // const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+   const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
   try {
     await sendEmail({
       email: user.email,
-      subject: `Ecommerce Password Recovery`,
+      subject: `Bloom-Kart Password Recovery`,
       message,
     });
 
@@ -259,12 +259,17 @@ exports.updateRole=catchAsyncErrors(async(req,res,next) => {
 exports.deleteUser=catchAsyncErrors(async(req,res,next) => {
   const user=await User.findById(req.params.id);  
 
-  // Remove cloudinary later for avatar
-
   if(!user)
   {
       return next(new ErrorHandler(`User does not exist with ID: ${req.params.id}`,404));
   }
+
+  // Remove cloudinary 
+  
+  const imageId = user.avatar.public_id;
+
+  await cloudinary.v2.uploader.destroy(imageId);
+  
   await user.deleteOne();
   res.status(201).json({success:true, message: "User deleted Successfully"});
   

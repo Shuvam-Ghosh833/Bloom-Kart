@@ -106,10 +106,10 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`${product?.name} -- ECOMMERCE`} />
+          <MetaData title={`${product?.name} -- BLOOM-KART`} />
           <div className="ProductDetails">
             <div>
-              <Carousel>
+              <Carousel >
                 {product?.images &&
                   product?.images?.map((item, i) => (
                     <img
@@ -201,7 +201,7 @@ const ProductDetails = () => {
             </DialogActions>
           </Dialog>
 
-          {product?.reviews && product?.reviews[0] ? (
+          {product && product.reviews && product.reviews[0] ? (
             <div className="reviews">
               {product?.reviews &&
                 product?.reviews?.map((review) => (

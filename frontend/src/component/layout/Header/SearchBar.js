@@ -46,7 +46,7 @@ const AnimatedSearchBox = (history) => {
   const [text, setText] = useState('Login');
 
   useEffect(() => {
-    if(isAuthenticated) setText(user.name);
+    if(isAuthenticated) setText(user.name.substring(0,7));
     else setText('Login')
   }, [text,isAuthenticated,user])
 

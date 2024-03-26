@@ -29,12 +29,15 @@ const navigate=useNavigate();
 
   const categories = [
     "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
+    "TV / Monitor",
+    "Washing Machine",
+    "AC",
+    "Inverter",
+    "Battery",
+    
     "Camera",
     "SmartPhones",
+    "Other Electronics",
   ];
 
   useEffect(() => {

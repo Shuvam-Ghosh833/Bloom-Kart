@@ -15,7 +15,7 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
-import { useParams,useNavigate, Navigate } from 'react-router-dom'
+import { useParams,useNavigate, } from 'react-router-dom'
 const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -40,12 +40,15 @@ const navigate=useNavigate();
 
   const categories = [
     "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
+    "TV / Monitor",
+    "Washing Machine",
+    "AC",
+    "Inverter",
+    "Battery",
+    
     "Camera",
     "SmartPhones",
+    "Other Electronics",
   ];
 
   const productId = params.id;

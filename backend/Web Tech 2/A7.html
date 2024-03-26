@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bill Payment</title>
+  <style>
+    form {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    legend {
+      font-weight: bold;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bill Payment</h1>
+
+  <form>
+
+    <fieldset>
+      <legend>Payment Options</legend>
+
+      <label>
+        <input type="radio" name="payment" value="now">
+        Pay Now
+      </label>
+
+      <label>
+        <input type="radio" name="payment" value="later" onclick="showDateBox()">
+        Pay Later
+      </label>
+
+    </fieldset>
+
+    <div id="dateBox" style="display:none;">
+      <label for="paymentDate">Payment Date:</label>
+      <input type="text" id="paymentDate" name="paymentDate"> 
+    </div>
+    <input type="submit" value="Submit">
+
+  </form>
+  
+  <script>
+    function showDateBox() {
+  const isPayLater = document.querySelector('input[value="later"]').checked;
+
+  if (isPayLater) {
+    document.getElementById('dateBox').style.display = 'block';
+  } else {
+    document.getElementById('dateBox').style.display = 'none'; 
+  }
+}
+// Add event listeners 
+const radios = document.querySelectorAll('input[name="payment"]');
+
+radios.forEach(radio => {
+  radio.addEventListener('change', showDateBox);
+});
+  </script>
+</body>
+</html>

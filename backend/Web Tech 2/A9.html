@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;  
+        }
+        
+        h2 {
+          margin-top: 40px;
+        }
+        
+        select {
+          padding: 10px;
+          margin: 10px;
+          font-size: 16px;  
+          border: 1px solid #5d8aa8;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        #details {
+          margin-top: 20px;
+          padding: 15px;
+          background: #e8f0fe;
+          border-radius: 5px;
+        }
+        
+        </style>
+<script>
+
+// State and district data
+const stateData = {
+  'Maharashtra': ['Pune', 'Mumbai', 'Nashik'],
+  'Madhya Pradesh': ['Indore', 'Bhopal', 'Jabalpur'],
+  'Assam': ['Guwahati', 'Jorhat', 'Dibrugarh']
+};
+
+// District details 
+const districtDetails = {
+  'Pune': 'Pune is 2nd largest city in Maharashtra',
+  'Mumbai': 'Mumbai is the capital of Maharashtra',
+  'Nashik': 'Nashik is known for its vineyards',
+  'Indore': 'Indore is the largest city in MP',
+  'Bhopal': 'Bhopal is capital of MP',
+  'Jabalpur': 'Jabalpur is called Sanskardhani',
+  'Guwahati': 'Guwahati is the largest city in Assam',
+  'Jorhat': 'Jorhat was the last capital of Ahom Kingdom',
+  'Dibrugarh': 'Dibrugarh is called Tea City of India'  
+};
+
+function updateDistricts() {
+  let state = document.getElementById('state').value;
+  let districts = stateData[state];
+
+  let distSelect = document.getElementById('district');
+  distSelect.innerHTML = '';
+  
+  for(let district of districts) {
+    let opt = document.createElement('option');
+    opt.value = district;
+    opt.text = district;
+    distSelect.add(opt); 
+  }
+  
+  updateDetails();
+}
+
+function updateDetails() {
+  let state = document.getElementById('state').value;
+  let district = document.getElementById('district').value;
+
+  let details = districtDetails[district];
+
+  document.getElementById('details').innerText = details;
+}
+
+</script>
+</head>
+
+<body>
+
+<h2>Select State and District</h2>
+
+<select id="state" onchange="updateDistricts()">
+  <option >Select State</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Assam">Assam</option>
+</select>
+
+<select id="district" onchange="updateDetails()"></select>
+
+<div id="details"></div>
+
+</body>
+</html>
