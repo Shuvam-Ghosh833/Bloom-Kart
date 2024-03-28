@@ -18,9 +18,9 @@ import {
   DialogContent,
   DialogTitle,
   Button,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useParams } from 'react-router-dom';
-import { Rating } from "@material-ui/lab";
+import { Rating } from "@mui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
 const ProductDetails = () => {
