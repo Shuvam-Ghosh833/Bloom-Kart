@@ -20,7 +20,7 @@ import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
 const ProductReviews = () => {
   const dispatch = useDispatch();
 const navigate=useNavigate();
-  const alert = useAlert();
+   const alert = useAlert();
 
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.review
@@ -87,7 +87,7 @@ const navigate=useNavigate();
       flex: 0.4,
 
       cellClassName: (params) => {
-        return params.getValue(params.id, "rating") >= 3
+        return params.rating >= 3
           ? "greenColor"
           : "redColor";
       },
@@ -105,7 +105,7 @@ const navigate=useNavigate();
           <Fragment>
             <Button
               onClick={() =>
-                deleteReviewHandler(params.getValue(params.id, "id"))
+                deleteReviewHandler(params.id)
               }
             >
               <DeleteIcon />

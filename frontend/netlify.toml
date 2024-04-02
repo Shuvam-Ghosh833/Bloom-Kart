@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/api/v1/*"
-  to = "/"
-  status = 200
